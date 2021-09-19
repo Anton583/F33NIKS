@@ -1,0 +1,19 @@
+{
+  "name": "f33niks",
+  "version": "0.0.1",
+  "description": "Yes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx tsc && node build/app.js"
+  },
+  "keywords": [
+    "Rogue"
+  ],
+  "author": "Anton",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/node": "^16.9.3",
+    "typescript": "^4.4.3"
+  }
+}
