@@ -20,6 +20,13 @@ Game Field:
 ######################################################
 ######################################################
 
+Player Character (PlayerChar)
+"@"
+
+DZ: 
+1) Player moves up from pressing "w"
+2) Player moves down from pressing "s"
+3) Resizing console window and then moving DOES resize next render output
 
 */
 
@@ -34,7 +41,12 @@ const drawGameField = (width: number, height: number) => {
     console.log(embel + titleName + embel);
     console.log(borders);
     for (let i = 0; i < height - 3; i++) {
-        console.log(symbolToDraw.repeat(width));
+        if (i === height - 4) {
+            const halfWidth = width / 2;
+            console.log(symbolToDraw.repeat(Math.ceil(halfWidth - 1)) + "@" + symbolToDraw.repeat(halfWidth));
+        } else {
+            console.log(symbolToDraw.repeat(width));
+        }
     }
 }
 const heightOffset = 3;
