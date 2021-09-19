@@ -21,8 +21,9 @@ Game Field:
 ######################################################
 
 
-
 */
+
+let symbolToDraw = "#"
 
 const drawGameField = (width: number, height: number) => {
     console.clear();
@@ -33,8 +34,7 @@ const drawGameField = (width: number, height: number) => {
     console.log(embel + titleName + embel);
     console.log(borders);
     for (let i = 0; i < height - 3; i++) {
-        console.log("#".repeat(width));
-        //console.log("#" +".".repeat(width - 2) + "#");
+        console.log(symbolToDraw.repeat(width));
     }
 }
 const heightOffset = 3;
@@ -57,9 +57,21 @@ stdin.setEncoding('utf8');
 stdin.resume();
 
 stdin.on('data', key => {
-    if (key.toString() === "q") {
+    const keyStr = key.toString();
+    
+    if (keyStr === "q") {
         process.exit();
     } else {
-        console.log(key.toString());
+        symbolToDraw = keyStr;
+        drawGameField(width, height);
+        //console.log(key.toString());
     }
 })
+
+
+/*
+-------- Game Loop --------
+1) Render
+2) Get User Input
+3) Repeat
+*/
