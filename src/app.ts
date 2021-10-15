@@ -27,12 +27,13 @@ DZ:
 1) Player moves up from pressing "w"
 2) Player moves down from pressing "s"
 3) Resizing console window and then moving DOES resize next render output
+
 */
 
 const stdin = process.stdin;
+// Game field symbol
 let symbolToDraw = "#"
-/// How can player's position be a single number? At the very least, when you decide to represent
-/// position like that, you gotta document it
+// Initial player's position - number of console rows up from the end of the console
 let playerPos = 4;
 
 // Draw title of the game with the borders at the top of the screen
@@ -66,17 +67,14 @@ const drawGameField = (width: number, height: number, playerPos: number) => {
 
 // Reserve space for title
 const heightOffset = 3;
-/// Find a way to make them const.
 let width = process.stdout.columns;
 let height = process.stdout.rows - heightOffset;
 
 // Scale game field if the window was resized
-/// Why is this a function, instead of lambda?
-/// If you are going to copy other people's code, you shoud be ready to explain it
-process.stdout.on('resize', function () {
+process.stdout.on('resize', () => {
     width = process.stdout.columns;
     height = process.stdout.rows;
-    // Rerender the game field with the new field size
+    // Rerender the game field with the new window's size
     drawGameField(width, height, playerPos)
 })
 
@@ -90,18 +88,16 @@ stdin.on('data', key => {
     // If "w" is pressed, move player up the game field
     if (keyStr === "w" && playerPos < height) {
         playerPos += 1
+         // Rerender the game field with the new player's position
+    drawGameField(width, height, playerPos);
     }
     // If "s" is pressed, move player down the game field
     if (keyStr === "s" && playerPos > 4) {
         playerPos -= 1
-    }
-    /// Can you explain what this line does? Why is it here?
-    else { }
-    // Rerender the game field with the new player's position
+         // Rerender the game field with the new player's position
     drawGameField(width, height, playerPos);
-    
+    } 
 })
-
 // Render the initial game field
 drawGameField(width, height, playerPos);
 
@@ -124,8 +120,7 @@ stdin.resume();
 
 /*
 -------- Game Loop --------
-1) Get User Input
-2) Process User Input
-3) Render
-4) Repeat
+1) Render
+2) Get User Input
+3) Repeat
 */
