@@ -89,12 +89,15 @@ stdin.on('data', key => {
     if (keyStr === "w" && playerPos < height) {
         playerPos += 1
          // Rerender the game field with the new player's position
+    /// Why is this line indented back, even though we are inside the if-block?
     drawGameField(width, height, playerPos);
     }
     // If "s" is pressed, move player down the game field
     if (keyStr === "s" && playerPos > 4) {
         playerPos -= 1
          // Rerender the game field with the new player's position
+    /// Is there really no other way to do control flow,
+    /// so you have to duplicate writing drawGameField() here and above?
     drawGameField(width, height, playerPos);
     } 
 })
@@ -120,7 +123,8 @@ stdin.resume();
 
 /*
 -------- Game Loop --------
-1) Render
-2) Get User Input
-3) Repeat
+1) Get User Input
+2) Change Game World accordingly
+3) Render
+4) Goto (1)
 */
